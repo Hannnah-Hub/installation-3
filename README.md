@@ -62,7 +62,7 @@ void setup() {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 
-  // 将舵机连接到数字引脚3
+  // 将舵机连接到数字引脚3，因为3~是一个PWM接口 帮助舵机平滑的转动
   myServo.attach(3);
   myServo.write(0); // 设置初始位置为0度
 }
