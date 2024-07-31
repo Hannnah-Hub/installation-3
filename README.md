@@ -1,6 +1,6 @@
 # installation-3
 ## 第一节课 7.31
-### 光敏电阻 开关led灯
+### 距离远 转动舵机
 ```C++
 #include <Servo.h>
 
