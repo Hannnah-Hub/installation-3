@@ -1,6 +1,25 @@
 # installation-3
 ## 第一节课 7.31
 ### 代码
+```C++
+int ledPin = 9; // 选择PWM引脚9
+
+void setup() {
+  pinMode(ledPin, OUTPUT); // 设置引脚为输出
+}
+
+void loop() {
+  for (int brightness = 0; brightness <= 255; brightness++) { 
+    analogWrite(ledPin, brightness); // 设置PWM值，控制亮度
+    delay(10); // 每次变化后等待10毫秒
+  }
+
+  for (int brightness = 255; brightness >= 0; brightness--) {
+    analogWrite(ledPin, brightness); 
+    delay(10); 
+  }
+}
+```
 当光暗时，led灯亮起
 ```C++
 int sensorPin = A0;    // AO引脚连接到模拟输入A0
