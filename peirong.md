@@ -36,7 +36,7 @@ void loop() {
   if (distance < DISTANCE_THRESHOLD) {
 
     for (int i = 0; i < NUM_LEDS; i++) {
-      strip.setPixelColor(i, strip.Color(255, 0, 0));  // 红色
+      strip.setPixelColor(i, strip.Color(255, 0, 0));  
     }
     strip.show();
   } else {
