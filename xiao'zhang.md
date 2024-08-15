@@ -18,6 +18,9 @@ int steps[8][4] = {
 };
 
 void setup() {
+  // 初始化串口通讯
+  Serial.begin(9600);
+  
   // 设置引脚模式
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
@@ -33,6 +36,19 @@ void loop() {
       digitalWrite(IN2, steps[j][1]);
       digitalWrite(IN3, steps[j][2]);
       digitalWrite(IN4, steps[j][3]);
+
+      // 打印调试信息
+      Serial.print("Step: ");
+      Serial.print(j);
+      Serial.print(" IN1: ");
+      Serial.print(steps[j][0]);
+      Serial.print(" IN2: ");
+      Serial.print(steps[j][1]);
+      Serial.print(" IN3: ");
+      Serial.print(steps[j][2]);
+      Serial.print(" IN4: ");
+      Serial.println(steps[j][3]);
+      
       delay(10); // 调整延迟以控制转速
     }
   }
@@ -46,10 +62,24 @@ void loop() {
       digitalWrite(IN2, steps[j][1]);
       digitalWrite(IN3, steps[j][2]);
       digitalWrite(IN4, steps[j][3]);
+
+      // 打印调试信息
+      Serial.print("Step: ");
+      Serial.print(j);
+      Serial.print(" IN1: ");
+      Serial.print(steps[j][0]);
+      Serial.print(" IN2: ");
+      Serial.print(steps[j][1]);
+      Serial.print(" IN3: ");
+      Serial.print(steps[j][2]);
+      Serial.print(" IN4: ");
+      Serial.println(steps[j][3]);
+      
       delay(10); // 调整延迟以控制转速
     }
   }
 
   delay(1000); // 等待一秒
 }
+
 ```
