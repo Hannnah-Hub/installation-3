@@ -71,3 +71,32 @@ void loop() {
 }
 
 ```
+```C++
+#include <Stepper.h>
+
+// 定义电机的步数（假设电机为4096步每圈）
+#define STEPS_PER_REV 4096
+
+// 初始化步进电机：步数和连接的引脚
+Stepper stepper(STEPS_PER_REV, 2, 3, 4, 5);
+
+void setup() {
+  // 初始化串口通讯
+  Serial.begin(9600);
+  
+  // 设置电机转速 (转速 = 60 秒 / 2 秒 = 30 RPM)
+  stepper.setSpeed(30); 
+}
+
+void loop() {
+  // 顺时针旋转一圈
+  stepper.step(STEPS_PER_REV);
+
+  delay(1000); // 等待一秒
+
+  // 逆时针旋转一圈
+  stepper.step(-STEPS_PER_REV);
+
+  delay(1000); // 等待一秒
+}
+```
