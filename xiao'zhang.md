@@ -37,19 +37,19 @@ void loop() {
       digitalWrite(IN3, steps[j][2]);
       digitalWrite(IN4, steps[j][3]);
 
-      // 打印调试信息
-      Serial.print("Step: ");
-      Serial.print(j);
-      Serial.print(" IN1: ");
-      Serial.print(steps[j][0]);
-      Serial.print(" IN2: ");
-      Serial.print(steps[j][1]);
-      Serial.print(" IN3: ");
-      Serial.print(steps[j][2]);
-      Serial.print(" IN4: ");
-      Serial.println(steps[j][3]);
+      // 打印调试信息（可选）
+      // Serial.print("Step: ");
+      // Serial.print(j);
+      // Serial.print(" IN1: ");
+      // Serial.print(steps[j][0]);
+      // Serial.print(" IN2: ");
+      // Serial.print(steps[j][1]);
+      // Serial.print(" IN3: ");
+      // Serial.print(steps[j][2]);
+      // Serial.print(" IN4: ");
+      // Serial.println(steps[j][3]);
       
-      delay(10); // 调整延迟以控制转速，10ms是一个较为通用的起点
+      delayMicroseconds(488); // 使用微秒延时控制速度
     }
   }
 
@@ -63,19 +63,7 @@ void loop() {
       digitalWrite(IN3, steps[j][2]);
       digitalWrite(IN4, steps[j][3]);
 
-      // 打印调试信息
-      Serial.print("Step: ");
-      Serial.print(j);
-      Serial.print(" IN1: ");
-      Serial.print(steps[j][0]);
-      Serial.print(" IN2: ");
-      Serial.print(steps[j][1]);
-      Serial.print(" IN3: ");
-      Serial.print(steps[j][2]);
-      Serial.print(" IN4: ");
-      Serial.println(steps[j][3]);
-      
-      delay(10); // 调整延迟以控制转速
+      delayMicroseconds(488); // 使用微秒延时控制速度
     }
   }
 
