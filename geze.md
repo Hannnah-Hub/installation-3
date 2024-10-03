@@ -1,6 +1,11 @@
 
 ```C++
+#include <Adafruit_NeoPixel.h>
 #include <Servo.h>
+
+#define LED_PIN  6      // 定义LED灯环的引脚
+#define NUM_LEDS 12     // LED灯环的灯珠数量
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 // 定义超声波传感器引脚
 const int trigPin1 = 9;
@@ -19,6 +24,10 @@ Servo servo3;
 // 定义舵机3是否已经执行过操作的标志
 bool servo3Executed = false;
 
+// 定义计时器
+unsigned long startTime = 0;
+bool ledStarted = false;
+
 void setup() {
   Serial.begin(9600);
   
@@ -33,10 +42,17 @@ void setup() {
   servo2.attach(5); // 舵机2连接到5号引脚
   servo3.attach(6); // 舵机3连接到6号引脚
 
+  // 初始化LED灯环
+  strip.begin();
+  strip.show(); // 初始化所有灯珠为关闭状态
+
   // 设置初始角度
   servo1.write(0);
   servo2.write(0);
   servo3.write(0);
+
+  // 记录程序启动时间
+  startTime = millis();
 }
 
 void loop() {
@@ -96,6 +112,22 @@ void loop() {
     servo3Executed = true; // 标记舵机3已经执行过动作
   }
 
+  // 检查是否已过15秒
+  if (millis() - startTime >= 15000 && !ledStarted) {
+    ledStarted = true;
+    Serial.println("15 seconds passed: Starting LED brightness increase");
+
+    // 逐渐亮起LED灯环
+    for (int brightness = 0; brightness <= 255; brightness++) {
+      for (int i = 0; i < NUM_LEDS; i++) {
+        strip.setPixelColor(i, strip.Color(brightness, brightness, brightness)); // 白光，RGB都设为亮度值
+      }
+      strip.show(); // 更新灯环
+      delay(50); // 控制亮起的速度
+    }
+  }
+
   delay(1000); // 延时1秒，避免过于频繁触发
 }
+
 ```
